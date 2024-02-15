@@ -2,6 +2,7 @@
 
 AddNumbers();
 ShowNumbers();
+
 Console.WriteLine();
 
 RemoveNumber();
@@ -15,7 +16,6 @@ int GetRandomNumber()
     int num = rndm.Next(0, 100);
     return num;
 }
-
 void RemoveNumber()
 {
     for (int i = 0; i < numbers.Count; i++)
@@ -38,7 +38,6 @@ void ShowNumbers()
         Console.Write($"{numbers[i]} ");
     }
 }
-
 void AddNumbers()
 {
     for (int i = 0; i < numbers.Capacity; i++)
