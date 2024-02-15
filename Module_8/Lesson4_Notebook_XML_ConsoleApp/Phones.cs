@@ -7,15 +7,34 @@
         get { return mobilePhone; }
         set
         {
-            mobilePhone = string.Format($"{value:+# (###) ###-##-##}");
+            if (mobilePhone != String.Empty)
+            {
+                mobilePhone = string.Format($"{value:+# (###) ###-##-##}");
+            }
+            else
+            {
+                mobilePhone = "";
+            }
         }
     }
     public string FlatPhone
     {
-        get { return flatPhone;}
+        get { return flatPhone; }
         set
         {
-            flatPhone = string.Format($"{value:###-##-##}");
+            if (value != String.Empty)
+            {
+                flatPhone = string.Format($"{value:###-##-##}");
+            }
+            else
+            {
+                flatPhone = "";
+            }
         }
+    }
+    public Phones(string mobilePhone, string flatPhone)
+    {
+        MobilePhone = mobilePhone;
+        FlatPhone = flatPhone;
     }
 }
