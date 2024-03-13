@@ -12,9 +12,10 @@ public class FileExplorer
         using (XmlWriter writer = XmlTextWriter.Create(path, settings))
         {
             serializer.Serialize(writer, persons);
+
+            Console.WriteLine("Данные сохранены");
         }
 
-        Console.WriteLine("Данные сохранены");
     }
     static public List<Person> DeserializationPersons(string path)
     {

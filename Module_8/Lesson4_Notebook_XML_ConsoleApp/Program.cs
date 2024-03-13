@@ -46,7 +46,9 @@ while (!exit)
         case 2:
             if (FileExplorer.CheckFile(departmentLogistics.path))
             {
-                departmentLogistics.ShowPersons(); break;
+                departmentLogisticsPersons = FileExplorer.DeserializationPersons(departmentLogistics.path);
+
+                departmentLogistics.ShowPersons(departmentLogisticsPersons); break;
             }
             else
             {
@@ -54,13 +56,25 @@ while (!exit)
                 Console.WriteLine();
                 break;
             }
-        case 3:
-            departmentLogistics.ShowPersons();
 
-            departmentLogistics.RemovePerson(departmentLogisticsPersons);
-            FileExplorer.SerializationPersons(departmentLogistics.path, departmentLogisticsPersons);
+        case 3:
+            if (FileExplorer.CheckFile(departmentLogistics.path))
+            {
+                departmentLogisticsPersons = FileExplorer.DeserializationPersons(departmentLogistics.path);
+                departmentLogistics.ShowPersons(departmentLogisticsPersons);
+
+                departmentLogistics.RemovePerson(departmentLogisticsPersons);
+                FileExplorer.SerializationPersons(departmentLogistics.path, departmentLogisticsPersons);
+
+            }
+            else
+            {
+                Console.WriteLine("Записей нет, удалять нечего");
+                Console.WriteLine();
+            }
 
             break;
+
         case 4:
             exit = true; break;
     }

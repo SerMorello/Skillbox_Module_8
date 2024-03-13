@@ -28,17 +28,27 @@
         Console.WriteLine("Введите номер записи которую хотите удалить");
         int choice = Convert.ToInt32(Console.ReadLine());
 
+        if (choice < 1 || choice > persons.Count)
+        {
+            while (choice < 1 || choice > persons.Count)
+            {
+                Console.WriteLine("Введите коректный номер");
+                choice = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+
         persons.RemoveAt(choice - 1);
+
+        Console.WriteLine("Запись удалена");
+        Console.WriteLine();
     }
-    public void ShowPersons()
+    public void ShowPersons(List<Person> Persons)
     {
-        List<Person> tempPersons = new();
         int cnt = 0;
-        tempPersons = FileExplorer.DeserializationPersons(path);
 
         string head = $"|№|ФИО                  |Адрес                 |Тел. мобильный     |Т.домашний|";
         Console.WriteLine(head);
-        foreach (var person in tempPersons)
+        foreach (var person in Persons)
         {
             Console.WriteLine($"|{++cnt}|{person.FirstName,-7} {person.LastName,-13}|" +
                 $"{person.Address.Street,-12} {person.Address.HouseNumber,-4} {person.Address.FlatNumber,-4}|" +
