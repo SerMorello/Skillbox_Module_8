@@ -1,57 +1,55 @@
-﻿public class Phones
+﻿using System.Text.RegularExpressions;
+public class Phones
 {
-    ulong mobilePhone;
-    ulong flatPhone;
-    public ulong MobilePhone
+    string mobilePhone;
+    string flatPhone;
+
+    public string MobilePhone
     {
         get { return mobilePhone; }
         set
         {
-            while (true)
+            value = EditPhoneNumber(value);
+
+            while (!CheckPhone(value, 11))
             {
-                if (value.ToString().Length < 11 || value.ToString().Length > 11)
-                {
-                    Console.WriteLine("Мобильный телефон состоит из 11 цифр, без \"+\"");
-                    //continue;
-                }
-                //break;
+                Console.WriteLine("Мобильный телефон состоит из 11 цифр, без \"+\"");
+                value = Console.ReadLine();
+
             }
-            if (value != 0)
+
+            if (value != string.Empty)
             {
-                ulong mobilePhone = value;
-                //mobilePhone = phone.ToString("+# (###) ###-##-##");
+                ulong phone = Convert.ToUInt64(value);
+                mobilePhone = phone.ToString("+# (###) ###-##-##");
             }
             else
             {
-                mobilePhone = 0;
+                mobilePhone = value;
             }
         }
     }
-    public ulong FlatPhone
+    public string FlatPhone
     {
         get { return flatPhone; }
         set
         {
-            while (true)
-            {
-                if (value.ToString().Length < 7 || value.ToString().Length > 7)
-                {
-                    Console.WriteLine("Городской телефон состоит из 7 цифр");
-                }
-                //break;
-            }
-            if (value.ToString() != String.Empty)
-            {
-                ulong flatPhone = Convert.ToUInt32(value);
-                //flatPhone = phone.ToString("###-##-##");
+            value = EditPhoneNumber(value);
 
-
-                //Console.WriteLine(flatPhone);
+            while (!CheckPhone(value, 7))
+            {
+                Console.WriteLine("Городской телефон состоит из 7 цифр");
+                value = Console.ReadLine();
             }
 
+            if (value != String.Empty)
+            {
+                uint phone = Convert.ToUInt32(value);
+                flatPhone = phone.ToString("###-##-##");
+            }
             else
             {
-                mobilePhone = 0;
+                mobilePhone = value;
             }
         }
     }
@@ -60,13 +58,20 @@
     //    MobilePhone = mobilePhone;
     //    FlatPhone = flatPhone;
     //}
-    static public bool CheckPhone(string phone, byte phoneType)
+    static private bool CheckPhone(string phone, byte phoneType)
     {
-        if (phone.Length == phoneType)
+        if (phone.Length == phoneType || phone == string.Empty)
         {
             return true;
         }
 
         return false;
+    }
+    static string EditPhoneNumber(string phoneNumber)
+    {
+        string pattern = @"\D";
+        Regex rg = new Regex(pattern);
+        phoneNumber = rg.Replace(phoneNumber, "");
+        return phoneNumber;
     }
 }

@@ -20,6 +20,7 @@ while (!exit)
             Console.WriteLine("Введите номер кого ищем");
             number = Console.ReadLine();
             Console.WriteLine($"Владелец номера {number} {SearchNote()}");
+            Console.WriteLine();
             break;
         case 3:
             exit = true;

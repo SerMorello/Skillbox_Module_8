@@ -1,6 +1,14 @@
 ﻿int menu;
 bool exit = false;
 
+PersonsStorage departmentLogistics = new();
+    List<Person> persons = new();
+
+if (FileExplorer.CheckFile(departmentLogistics.path))
+{
+    persons = FileExplorer.DeserializationPersons(departmentLogistics.path);
+}
+
 while (!exit)
 {
     Console.WriteLine("Выберите действие\n1.Добаить запись\n2.Посмотреть записи\n3.Удалить запись\n4.Завершить работу");
@@ -28,23 +36,23 @@ while (!exit)
 
             tempDataPerson[5] = Console.ReadLine();
 
-            while (!Phones.CheckPhone(tempDataPerson[5], 11))
-            {
-                tempDataPerson[5] = Console.ReadLine();
-                Console.WriteLine();
-            }
+            //while (!Phones.CheckPhone(tempDataPerson[5], 11))
+            //{
+            //    tempDataPerson[5] = Console.ReadLine();
+            //    Console.WriteLine();
+            //}
 
             tempDataPerson[6] = Console.ReadLine();
 
-            PersonsStorage.AddPerson(tempDataPerson);
+            persons.Add(departmentLogistics.AddPerson(tempDataPerson));
 
-            PersonsStorage.SerializationPersons();
+            FileExplorer.SerializationPersons(departmentLogistics.path, persons);
             break;
 
         case 2:
-            if (PersonsStorage.CheckFile())
+            if (FileExplorer.CheckFile(departmentLogistics.path))
             {
-                PersonsStorage.ShowPersons(); break;
+                departmentLogistics.ShowPersons(); break;
             }
             else
             {
