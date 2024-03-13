@@ -23,26 +23,29 @@
 
         return tempPerson;
     }
-    public void RemovePerson(int i, List<Person> persons)
+    public void RemovePerson(List<Person> persons)
     {
-        persons.RemoveAt(i - 1);
+        Console.WriteLine("Введите номер записи которую хотите удалить");
+        int choice = Convert.ToInt32(Console.ReadLine());
+
+        persons.RemoveAt(choice - 1);
     }
     public void ShowPersons()
     {
-
-        List<Person> tempPersons = new List<Person>();
-
+        List<Person> tempPersons = new();
+        int cnt = 0;
         tempPersons = FileExplorer.DeserializationPersons(path);
-        string head = $"|ФИО                  |Адрес                 |Тел. мобильный     |Т.домашний|";
+
+        string head = $"|№|ФИО                  |Адрес                 |Тел. мобильный     |Т.домашний|";
         Console.WriteLine(head);
         foreach (var person in tempPersons)
         {
-            Console.WriteLine($"|{person.FirstName,-7} {person.LastName,-13}|" +
+            Console.WriteLine($"|{++cnt}|{person.FirstName,-7} {person.LastName,-13}|" +
                 $"{person.Address.Street,-12} {person.Address.HouseNumber,-4} {person.Address.FlatNumber,-4}|" +
                 $"{person.Phones.MobilePhone,-18} | {person.Phones.FlatPhone,-9}|");
         }
 
         Console.WriteLine();
     }
-    
+
 }

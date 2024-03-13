@@ -2,11 +2,11 @@
 bool exit = false;
 
 PersonsStorage departmentLogistics = new();
-List<Person> persons = new();
+List<Person> departmentLogisticsPersons = new();
 
 if (FileExplorer.CheckFile(departmentLogistics.path))
 {
-    persons = FileExplorer.DeserializationPersons(departmentLogistics.path);
+    departmentLogisticsPersons = FileExplorer.DeserializationPersons(departmentLogistics.path);
 }
 
 while (!exit)
@@ -38,9 +38,9 @@ while (!exit)
 
             tempDataPerson[6] = Console.ReadLine();
 
-            persons.Add(departmentLogistics.AddPerson(tempDataPerson));
+            departmentLogisticsPersons.Add(departmentLogistics.AddPerson(tempDataPerson));
 
-            FileExplorer.SerializationPersons(departmentLogistics.path, persons);
+            FileExplorer.SerializationPersons(departmentLogistics.path, departmentLogisticsPersons);
             break;
 
         case 2:
@@ -54,7 +54,13 @@ while (!exit)
                 Console.WriteLine();
                 break;
             }
-        case 3: Console.WriteLine("3"); break;
+        case 3:
+            departmentLogistics.ShowPersons();
+
+            departmentLogistics.RemovePerson(departmentLogisticsPersons);
+            FileExplorer.SerializationPersons(departmentLogistics.path, departmentLogisticsPersons);
+
+            break;
         case 4:
             exit = true; break;
     }
