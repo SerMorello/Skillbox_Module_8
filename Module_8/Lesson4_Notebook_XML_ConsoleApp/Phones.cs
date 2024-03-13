@@ -1,40 +1,72 @@
 ﻿public class Phones
 {
-    string mobilePhone;
-    string flatPhone;
-    public string MobilePhone
+    ulong mobilePhone;
+    ulong flatPhone;
+    public ulong MobilePhone
     {
         get { return mobilePhone; }
         set
         {
-            if (mobilePhone != String.Empty)
+            while (true)
             {
-                mobilePhone = string.Format($"{value:+# (###) ###-##-##}");
+                if (value.ToString().Length < 11 || value.ToString().Length > 11)
+                {
+                    Console.WriteLine("Мобильный телефон состоит из 11 цифр, без \"+\"");
+                    //continue;
+                }
+                //break;
+            }
+            if (value != 0)
+            {
+                ulong mobilePhone = value;
+                //mobilePhone = phone.ToString("+# (###) ###-##-##");
             }
             else
             {
-                mobilePhone = "";
+                mobilePhone = 0;
             }
         }
     }
-    public string FlatPhone
+    public ulong FlatPhone
     {
         get { return flatPhone; }
         set
         {
-            if (value != String.Empty)
+            while (true)
             {
-                flatPhone = string.Format($"{value:###-##-##}");
+                if (value.ToString().Length < 7 || value.ToString().Length > 7)
+                {
+                    Console.WriteLine("Городской телефон состоит из 7 цифр");
+                }
+                //break;
             }
+            if (value.ToString() != String.Empty)
+            {
+                ulong flatPhone = Convert.ToUInt32(value);
+                //flatPhone = phone.ToString("###-##-##");
+
+
+                //Console.WriteLine(flatPhone);
+            }
+
             else
             {
-                flatPhone = "";
+                mobilePhone = 0;
             }
         }
     }
-    public Phones(string mobilePhone, string flatPhone)
+    //public Phones(string mobilePhone, string flatPhone)
+    //{
+    //    MobilePhone = mobilePhone;
+    //    FlatPhone = flatPhone;
+    //}
+    static public bool CheckPhone(string phone, byte phoneType)
     {
-        MobilePhone = mobilePhone;
-        FlatPhone = flatPhone;
+        if (phone.Length == phoneType)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
