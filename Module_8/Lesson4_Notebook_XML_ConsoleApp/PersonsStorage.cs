@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-public partial class PersonsStorage
+﻿public class PersonsStorage
 {
     public string path = "People";
 
@@ -45,5 +44,5 @@ public partial class PersonsStorage
 
         Console.WriteLine();
     }
-
+    
 }

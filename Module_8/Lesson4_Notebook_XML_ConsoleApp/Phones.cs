@@ -53,11 +53,7 @@ public class Phones
             }
         }
     }
-    //public Phones(string mobilePhone, string flatPhone)
-    //{
-    //    MobilePhone = mobilePhone;
-    //    FlatPhone = flatPhone;
-    //}
+
     static private bool CheckPhone(string phone, byte phoneType)
     {
         if (phone.Length == phoneType || phone == string.Empty)

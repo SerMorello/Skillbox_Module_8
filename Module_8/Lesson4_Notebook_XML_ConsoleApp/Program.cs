@@ -2,7 +2,7 @@
 bool exit = false;
 
 PersonsStorage departmentLogistics = new();
-    List<Person> persons = new();
+List<Person> persons = new();
 
 if (FileExplorer.CheckFile(departmentLogistics.path))
 {
@@ -35,12 +35,6 @@ while (!exit)
                 "\nНомер состового телефона (11 цифр)\nНоммер домашнего телефона (7 цифр)");
 
             tempDataPerson[5] = Console.ReadLine();
-
-            //while (!Phones.CheckPhone(tempDataPerson[5], 11))
-            //{
-            //    tempDataPerson[5] = Console.ReadLine();
-            //    Console.WriteLine();
-            //}
 
             tempDataPerson[6] = Console.ReadLine();
 
