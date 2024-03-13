@@ -35,9 +35,9 @@ public partial class PersonsStorage
 
         tempPersons = FileExplorer.DeserializationPersons(path);
         string head = $"|ФИО                  |Адрес                 |Тел. мобильный     |Т.домашний|";
+        Console.WriteLine(head);
         foreach (var person in tempPersons)
         {
-            Console.WriteLine(head);
             Console.WriteLine($"|{person.FirstName,-7} {person.LastName,-13}|" +
                 $"{person.Address.Street,-12} {person.Address.HouseNumber,-4} {person.Address.FlatNumber,-4}|" +
                 $"{person.Phones.MobilePhone,-18} | {person.Phones.FlatPhone,-9}|");
@@ -45,5 +45,5 @@ public partial class PersonsStorage
 
         Console.WriteLine();
     }
-    
+
 }
